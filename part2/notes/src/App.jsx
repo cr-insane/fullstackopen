@@ -30,7 +30,9 @@ const App = () => {
         .then(returnedNote => {
         setNotes(notes.concat(returnedNote))
         setNewNote('')
-      })
+      }).catch(error => {
+          setErrorMessage(error)
+    })
   }
 
   const toggleImportanceOf = id => {
