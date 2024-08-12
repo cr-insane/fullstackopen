@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const Note = require('./models/note')
 const dotenv = require('dotenv').config()
 
-app.use(express.static('dist'))
+
 const errorHandler = (error, request, response, next) => {
     console.error(error.message)
 
@@ -29,6 +29,7 @@ app.use(cors())
 
 app.use(express.json())
 app.use(requestLogger)
+app.use(express.static('dist'))
 
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: 'unknown endpoint' })
