@@ -31,7 +31,7 @@ const App = () => {
         setNotes(notes.concat(returnedNote))
         setNewNote('')
       }).catch(error => {
-          setErrorMessage(error)
+          setErrorMessage(error.response.data.error)
     })
   }
 
