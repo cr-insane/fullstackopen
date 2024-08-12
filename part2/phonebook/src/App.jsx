@@ -38,8 +38,10 @@ const App = () => {
           console.log(notification)
       })
       .catch(error => {
-        alert(`failure maybe already exist or something`)
-        console.log(error)
+        setNotification({message: `${error.response.data.error}`, type: 'error'})
+          setTimeout(() => {
+              setNotification({message: null, type: null})
+          }, 5000)
       })
     } else if(window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)){
       personService.update(existingPerson.id, personObject)
@@ -54,7 +56,7 @@ const App = () => {
         })
         .catch(error => {
           if(error.response.status == '404') {
-            setNotification({message: `${newName} has already been removed from server`, type: 'error'})
+            setNotification({message: error.response.data.error, type: 'error'})
             setTimeout(() => {          
               setNotification({message: null, type: null})        
             }, 5000)
